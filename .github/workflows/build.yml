@@ -9,7 +9,8 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-
+env:
+  CLONE_PATH: /opt/merlin
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -23,11 +24,23 @@ jobs:
     - uses: actions/checkout@v2
 
     # Runs a single command using the runners shell
-    - name: Run a one-line script
-      run: sudo apt-get update && sudo apt-get install -y libncurses5 libncurses5-dev m4 bison gawk flex libstdc++6-4.7-dev g++-4.7 g++ gengetopt git gitk zlib1g-dev autoconf autopoint libtool-bin shtool autogen mtd-utils intltool sharutils docbook-xsl-* libstdc++5 texinfo dos2unix xsltproc u-boot-tools device-tree-compiler qemu gperf liblzo2-dev uuid-dev build-essential lzma-dev liblzma-dev lzma binutils-dev patch cmake intltool libglib2.0-dev gtk-doc-tools
+    - name: update && install packages
+      run: sudo apt-get update && sudo apt-get install -y libncurses5 libncurses5-dev \
+        m4 bison gawk flex libstdc++6-4.7-dev g++-4.7 g++ gengetopt git gitk zlib1g-dev \
+        autoconf autopoint libtool-bin shtool autogen mtd-utils intltool sharutils \
+        docbook-xsl-* libstdc++5 texinfo dos2unix xsltproc u-boot-tools device-tree-compiler \
+        qemu gperf liblzo2-dev uuid-dev build-essential lzma-dev liblzma-dev lzma binutils-dev \
+        patch cmake intltool libglib2.0-dev gtk-doc-tools \
+        libc6-i386 lib32stdc++6 lib32z1 libelf1:i386 lib32ncurses5 libc6-dev-i386
     # Runs a set of commands using the runners shell
-    - name: Run a multi-line script
+    - name: clone the project
       run: |
-        echo Add other actions to build,
-        echo Add other actions to build,
-        echo test, and deploy your project.
+        git clone --depth=1 https://github.com/MerlinRdev/K3-merlin.ng.git ${{env.CLONE_PATH}}
+        
+    - name: run build
+      run: |
+        #export LD_LIBRARY_PATH=/opt/toolchains/crosstools-arm-gcc-5.3-linux-4.1-glibc-2.22-binutils-2.25/usr/lib
+		    #export TOOLCHAIN_BASE=/opt/merlin/toolchains
+		    #export PATH=/opt/merlin/toolchains/crosstools-arm-gcc-5.3-linux-4.1-glibc-2.22-binutils-2.25/usr/bin:/opt/merlin/toolchains/crosstools-aarch64-gcc-5.3-linux-4.1-glibc-2.22-binutils-2.25/usr/bin:/opt/merlin/hnd/tools/linux/hndtools-armeabi-2011.09/bin:$PATH
+        #  git clone --depth=1 https://github.com/MerlinRdev/K3-merlin.ng.git ${{env.CLONE_PATH}}
+    
