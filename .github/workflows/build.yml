@@ -69,5 +69,5 @@ jobs:
         sudo mkdir -p /media/ASUSWRT/
         #sudo ln -s asuswrt-merlin /media/ASUSWRT/asuswrt-merlin
         sudo ln -s asuswrt-merlin.ng /media/ASUSWRT/asuswrt-merlin.ng
-        cd asuswrt-merlin.ng/release/src-rt-5.02hnd
+        cd asuswrt-merlin.ng/release/src-rt-7.14.114.x/src
         make rt-ac3100
