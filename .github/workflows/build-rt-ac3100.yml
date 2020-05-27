@@ -55,8 +55,8 @@ jobs:
         git clone https://github.com/RMerl/asuswrt-merlin.ng
         git clone https://github.com/RMerl/am-toolchains.git
 
-        mkdir -p /opt/images/
-        mkdir -p /media/asuswrt/
+        sudo mkdir -p /opt/images/
+        sudo mkdir -p /media/asuswrt/
         
         cd asuswrt-merlin.ng
         echo "::set-env name=MERLIN_VERSION::$(git show-ref --heads -s)"
