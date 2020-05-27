@@ -82,7 +82,7 @@ jobs:
         #sudo mv -f images/*.trx /opt/images/
     - name: Move file
       run: |
-        sudo mv -f asuswrt-merlin.ng/release/src-rt-7.14.114.x/src/images/*.trx /opt/images/
+        sudo mv -f /media/asuswrt/asuswrt-merlin.ng/release/src-rt-7.14.114.x/src/images/*.trx /opt/images/
 #    - name : Upload packages
 #      uses: actions/upload-artifact@master
 #      if: always()
