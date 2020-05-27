@@ -50,7 +50,7 @@ jobs:
               
     - name: Clone the project
       run: |
-        echo $(pwd)
+        #echo $(pwd)
         git clone https://github.com/RMerl/asuswrt-merlin
         git clone https://github.com/RMerl/asuswrt-merlin.ng
         git clone https://github.com/RMerl/am-toolchains.git
@@ -77,7 +77,12 @@ jobs:
         cd asuswrt-merlin.ng/release/src-rt-7.14.114.x/src
         make rt-ac3100
         
-        sudo mv -f images/*.trx /opt/images/
+        echo "build done"
+        
+        #sudo mv -f images/*.trx /opt/images/
+    - name: Move file
+      run: |
+        sudo mv -f asuswrt-merlin.ng/release/src-rt-7.14.114.x/src/images/*.trx /opt/images/
 #    - name : Upload packages
 #      uses: actions/upload-artifact@master
 #      if: always()
